@@ -1,0 +1,39 @@
+body {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 15pt;
+}
+h1 {
+    text-align: center;
+    font-weight: 500;
+}
+svg {
+    display: block;
+    margin: auto;
+}
+
+/* Tooltip */
+div.tooltip {
+    position: absolute;
+    visibility: hidden;
+    font-size: 60%;
+    color: #333333;
+    background-color: #e6e6e6;
+    opacity: .95;
+    padding: 5px;
+}
+
+.bubble {
+    stroke: #000;
+    stroke-width: .5px;
+  }
+
+.legend circle {
+    fill: none;
+    stroke: #ccc;
+}
+
+.legend text {
+    fill: #777;
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
