@@ -202,7 +202,7 @@
         svg.append('g')
             .attr('class', 'x axis')
             .attr('transform', 'translate(10,' + padding.t + ')')
-            .call(d3.axisBottom(yearScale))
+            .call(d3.axisBottom(yearScale).tickFormat(d3.format("d")))
 
         // y axis
         svg.append('g')
