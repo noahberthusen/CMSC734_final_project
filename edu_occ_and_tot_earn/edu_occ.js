@@ -19,19 +19,7 @@
 
     // tooltip 
     let mouse_coord = [0, 0]
-    let toolTip = d3.tip()
-        .attr("class", "d3-tip")
-        .attr("offset", function (d) {
-            console.log(mouse_coord)
-            return mouse_coord
-        })
-        .html(function (d) {
-            return "<h5>" + "Education: " + d.Education + "<br>"
-                + "Occupation Class: " + d.Category + "<br>"
-                + "Salary: " + d.Salary
-            "</h5>";
-        });
-    svg.call(toolTip)
+    let toolTip = d3.select('.tooltip3')
     toolTipLock = false
     lockCategory = null
 
@@ -178,7 +166,13 @@
             .attr("opacity", 0)
             .on("mouseover", function (d) {
                 if (!toolTipLock || lockCategory == d["Category"]) {
-                    toolTip.show(d)
+                    toolTip
+                        .style('visibility', 'visible')
+                        .style('top', d3.event.pageY + 10 + 'px')
+                        .style('left', d3.event.pageX + 10 + 'px')
+                        .html('Education: ' + d["Education"] +
+                            '<br />Occupation Class: ' + occ_dict[ d["Category"] ] +
+                            '<br />Salary: $' + d["Salary"] );
                 }
                 if (!toolTipLock) {
                     let selectedCategory = d["Category"]
@@ -186,7 +180,7 @@
                 }
             })
             .on("mouseout", function (d) {
-                toolTip.hide(d)
+                toolTip.style('visibility', 'hidden');
                 if (!toolTipLock) {
 
                     svg.selectAll("path")

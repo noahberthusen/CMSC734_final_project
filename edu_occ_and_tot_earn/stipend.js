@@ -19,21 +19,8 @@
 
     // tooltip 
     let mouse_coord = [0, 0]
-    let toolTip = d3.tip()
-        .attr("class", "d3-tip")
-        .attr("offset", function (d) {
-            console.log(mouse_coord)
-            return mouse_coord
-        })
-        .html(function (d) {
-            return "<h5>" + "Education: " + d.education + "<br>"
-                + "Job: " + d.job + "<br>"
-                + "Mean Pay: " + d.pay
-            "</h5>";
-        });
-    svg.call(toolTip)
+    let toolTip = d3.select(".tooltip4")
     toolTipLock = false
-    selectedJob = "MGR"
 
     function updateStipend() {
         // sorting is done to ensure the relevant data is moved to front
@@ -191,7 +178,6 @@
 
             possibleJobs = new Set(possibleJobs)
             possibleJobs = Array.from(possibleJobs)
-            
 
             
             console.log(possibleJobs)
@@ -203,7 +189,7 @@
                 .data(possibleJobs)
                 .enter()
                 .append("option")
-                .text(d => d)
+                .text(d => occ_dict[d])
                 .attr("value", d => d)
 
             d3.select("#jobSelectButton")
@@ -294,12 +280,18 @@
                     console.log(selectedJob)
                     console.log(selectedJob==d.job)
                     if (d.job == selectedJob) {
-                        toolTip.show(d)
+                        toolTip
+                            .style('visibility', 'visible')
+                            .style('top', d3.event.pageY + 10 + 'px')
+                            .style('left', d3.event.pageX + 10 + 'px')
+                            .html('Education: ' + d.education +
+                                '<br />Occupation Class: ' + occ_dict[ d.job ] +
+                                '<br />Total Earnings: $' + d.c_pay);
                     }
                     
                 })
                 .on("mouseout", function (d) {
-                    toolTip.hide(d)
+                    toolTip.style('visibility', 'hidden');
                 })
                 
            updateStipend()

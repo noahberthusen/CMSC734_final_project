@@ -35,7 +35,7 @@ svg {
 }
 
 /* Tooltip */
-div.tooltip1, div.tooltip2 {
+div.tooltip1, div.tooltip2, div.tooltip3, div.tooltip4 {
     position: absolute;
     visibility: hidden;
     font-size: 60%;
