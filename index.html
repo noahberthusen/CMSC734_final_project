@@ -6,62 +6,75 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="paragraph">
-    <p>
-      Introduction...
-    </p>
-  </div>
+    <div class="paragraph">
+        <p>
+            Introduction...
+        </p>
+    </div>
 
 
-  <!-- county map -->
-  <div id="slider1"></div>
-  <div id="map1"></div>
-  <div class="tooltip1"></div>
+    <!-- county map -->
+    <div id="slider1"></div>
+    <div id="map1"></div>
+    <div class="tooltip1"></div>
 
-  <div class="caption">
-    <p>
-      FIG. 1. Living wage information by county. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [1] and historical snapshots of the website. Hovering over a county displays the living wage value as well as the poverty wage and the minimum wage for that county. Missing data is indicated by a gray fill. 
-    </p>
-  </div>
+    <div class="caption">
+        <p>
+            FIG. 1. Living wage information by county. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [1] and historical snapshots of the website. Hovering over a county displays the living wage value as well as the poverty wage and the minimum wage for that county. Missing data is indicated by a gray fill.
+        </p>
+    </div>
 
-  <div class="paragraph">
-    <p>
-      According to the Living Wage calculator [1], the <i>living wage</i> model "is a market-based approach that draws upon geographically specific expenditure data related to a family's likely minimum food, childcare, health insurance, housing, transportation, and other basic necessities (e.g. clothing, personal care items, etc.) costs." This value depends on the number of earners and children, so we assume one adult worker with zero children--as most graduate students fit into this category. The map in Fig. 1 displays wage data for this group by county over nine years. For practically <b>every single county</b>, the minimum wage is well below the living wage and is in fact much closer to the poverty wage. Furthermore, while the living wage has almost doubled in many counties over the nine years of data, the minimum wage has not been increased to match. These are concerning issues but separate from the motivations of this visualization. 
-    </p>
-  </div>
+    <div class="paragraph">
+        <p>
+            According to the Living Wage calculator [1], the <i>living wage</i> model "is a market-based approach that draws upon geographically specific expenditure data related to a family's likely minimum food, childcare, health insurance, housing, transportation, and other basic necessities (e.g. clothing, personal care items, etc.) costs." This value depends on the number of earners and children, so we assume one adult worker with zero children--as most graduate students fit into this category. The map in Fig. 1 displays wage data for this group by county over nine years. For practically <b>every single county</b>, the minimum wage is well below the living wage and is in fact much closer to the poverty wage. Furthermore, while the living wage has almost doubled in many counties over the nine years of data, the minimum wage has not been increased to match. These are concerning issues but separate from the motivations of this visualization.
+        </p>
+    </div>
 
-  <!-- school map -->
-  <div id="slider2"></div>
-  <div id="map2"></div>
-  <div class="tooltip2"></div>
-  <div class="caption">
-    <p>FIG. 2. Average stipend amount for graduate students. Data is taken from Ph.D. Stipends [2], a site where graduate students can self report stipend information. Hovering over a datapoint displays the average stipend amount and the living wage surplus/deficit.</p>
-  </div>
+    <!-- school map -->
+    <div id="slider2"></div>
+    <div id="map2"></div>
+    <div class="tooltip2"></div>
+    <div class="caption">
+        <p>FIG. 2. Average stipend amount for graduate students. Data is taken from Ph.D. Stipends [2], a site where graduate students can self report stipend information. Hovering over a datapoint displays the average stipend amount and the living wage surplus/deficit.</p>
+    </div>
 
 
-  <div class="paragraph">
-    <p>
-      So now that we know it is expensive to live in the U.S., how well do graduate stipends support their students when compared to the cost of living? In Fig. 2 we provide evidence supporting the claim that, in general, graduate students are not getting paid enough. Each circle in the map above represents a single university. A circle's size corresponds to the stipend amount for that university averaged over all entries. As such, we lose information about the pay of specific programs. A circle's color indicates whether that university is paying more/less than the living wage for the county in which it is located. 
-    </p>
-  </div>
+    <div class="paragraph">
+        <p>
+            So now that we know it is expensive to live in the U.S., how well do graduate stipends support their students when compared to the cost of living? In Fig. 2 we provide evidence supporting the claim that, in general, graduate students are not getting paid enough. Each circle in the map above represents a single university. A circle's size corresponds to the stipend amount for that university averaged over all entries. As such, we lose information about the pay of specific programs. A circle's color indicates whether that university is paying more/less than the living wage for the county in which it is located.
+        </p>
+    </div>
 
-  <div class="paragraph">
-    <p>
-      The trend to notice is that over the years, while stipends have increased, they have not kept up with the cost of living. This can be seen as more universities are being shaded in red--indicating a stipend that is below the living wage for that county. 
-    </p>
-  </div>
+    <div class="paragraph">
+        <p>
+            The trend to notice is that over the years, while stipends have increased, they have not kept up with the cost of living. This can be seen as more universities are being shaded in red--indicating a stipend that is below the living wage for that county.
+        </p>
+    </div>
 
-  <div class="caption">
-    <p>
-      [1] Glasmeier, Amy K. Living Wage Calculator. 2020. Massachusetts Institute of Technology. <a href="https://livingwage.mit.edu">livingwage.mit.edu</a>. <br>
-      [2] PhD stipends. <a href="https://www.phdstipends.com">https://www.phdstipends.com</a>.
+    <div class="caption">
+        <p>
+            [1] Glasmeier, Amy K. Living Wage Calculator. 2020. Massachusetts Institute of Technology. <a href="https://livingwage.mit.edu">livingwage.mit.edu</a>. <br>
+            [2] PhD stipends. <a href="https://www.phdstipends.com">https://www.phdstipends.com</a>.
 
-    </p>
-  </div>
+        </p>
+    </div>
+
+    <div id="eduOcc">
+        <svg width="680" height="600" style="border: 1px solid #777;">
+        </svg>
+    </div>
+    <select id="jobSelectButton"></select>
+    <div id="stipend">
+        <svg width="680" height="600" style="border: 1px solid #777;">
+        </svg>
+    </div>
 
 </body>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://unpkg.com/d3-simple-slider"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
 <script src="./main.js"></script>
+<script src="./edu_occ_and_tot_earn/d3-tip.js"></script>
+<script src="./edu_occ_and_tot_earn/edu_occ.js"></script>
+<script src="./edu_occ_and_tot_earn/stipend.js"></script>
 </html>

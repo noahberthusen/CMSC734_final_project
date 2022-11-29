@@ -74,8 +74,8 @@
     
 
     // Historical Lifetime Income
-    d3.csv('edu_occ.csv').then(function (eduOccDataset) {
-        d3.csv("stipend.csv").then(function (stipendDataset) {
+    d3.csv('./edu_occ_and_tot_earn/edu_occ.csv').then(function (eduOccDataset) {
+        d3.csv("./edu_occ_and_tot_earn/stipend.csv").then(function (stipendDataset) {
 
             let startYear = 2004
             let endYear = 2019

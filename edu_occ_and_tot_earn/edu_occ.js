@@ -92,7 +92,7 @@
     }
 
     // Educational Obtainment, Occupation, and Salary Graph
-    d3.csv('edu_occ.csv').then(function (dataset) {
+    d3.csv('./edu_occ_and_tot_earn/edu_occ.csv').then(function (dataset) {
 
         dataset.forEach(function (d) {
             d["Salary"] = Math.round(d["Salary"])
