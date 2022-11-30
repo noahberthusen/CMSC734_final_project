@@ -356,13 +356,14 @@
                 })
                 .on("mouseover", function (d) {
                     if (d.job == selectedJob) {
+                        let format = d3.format(",")
                         toolTip
                             .style('visibility', 'visible')
                             .style('top', d3.event.pageY + 10 + 'px')
                             .style('left', d3.event.pageX + 10 + 'px')
                             .html('Education: ' + d.education +
                                 '<br />Occupation Class: ' + occ_dict[ d.job ] +
-                                '<br />Total Earnings: $' + d.c_pay);
+                                '<br />Total Earnings: $' + format(d.c_pay));
                     }
                     
                 })
