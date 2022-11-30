@@ -168,13 +168,14 @@ var educationScale
             .attr("opacity", 0)
             .on("mouseover", function (d) {
                 if (!toolTipLock || lockCategory == d["Category"]) {
+                    let format = d3.format(",")
                     toolTip
                         .style('visibility', 'visible')
                         .style('top', d3.event.pageY + 10 + 'px')
                         .style('left', d3.event.pageX + 10 + 'px')
                         .html('Education: ' + d["Education"] +
                             '<br />Occupation Class: ' + occ_dict[ d["Category"] ] +
-                            '<br />Salary: $' + d["Salary"] );
+                            '<br />Salary: $' + format( d["Salary"] ) );
                 }
                 if (!toolTipLock) {
                     let selectedCategory = d["Category"]
