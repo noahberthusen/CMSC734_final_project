@@ -1,3 +1,4 @@
+var educationScale
 {
     let svg = d3
         .select('#eduOcc')
@@ -15,7 +16,7 @@
     let salaryDomain
     let yearScale
     let salaryScale
-    let educationScale
+    
 
     // tooltip 
     let mouse_coord = [0, 0]

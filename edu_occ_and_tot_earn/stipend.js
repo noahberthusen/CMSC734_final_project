@@ -15,7 +15,7 @@
     let payDomain
     let yearScale
     let payScale
-    let educationScale
+    // let educationScale
 
     // tooltip 
     let mouse_coord = [0, 0]
@@ -294,7 +294,7 @@
             payScale = d3.scaleLinear()
                 .domain(payDomain)
                 .range([svgHeight - padding.t, padding.b])
-            educationScale = d3.scaleOrdinal(d3.schemeCategory10)
+            //educationScale = d3.scaleOrdinal(d3.schemeCategory10)
 
             // initialize plots
             // line plot
