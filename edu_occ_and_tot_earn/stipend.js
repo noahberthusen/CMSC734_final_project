@@ -22,7 +22,19 @@
     let toolTip = d3.select(".tooltip4")
     toolTipLock = false
 
-    function updateStipend() {
+    function updateStipend(dataset) {
+
+        // update scale
+        payDomain = d3.extent(dataset, function (d) {
+            if (d.job == selectedJob) {
+                return d.c_pay
+            }
+            return 0
+        });
+        payScale = d3.scaleLinear()
+            .domain(payDomain)
+            .range([svgHeight - padding.t, padding.b])
+        console.log(svg.select("g.y axis"))
         // sorting is done to ensure the relevant data is moved to front
         // update lines
 
@@ -31,6 +43,12 @@
                 return d3.ascending(a.key.slice(0, 3) == selectedJob,
                     b.key.slice(0, 3) == selectedJob)
 
+            })
+            .attr("d", function (ds) {
+                return d3.line()
+                    .x(function (d) { return yearScale(d.year) })
+                    .y(function (d) { return payScale(d.c_pay) })
+                    (ds.values)
             })
             .attr("opacity", function (ds) {
                 if (ds != null) {
@@ -56,6 +74,13 @@
                 }
                 return
             })
+            .attr("cy", function (d) {
+                return payScale(d.c_pay)
+            })
+
+        
+        svg.select("g.y.axis")
+            .call(d3.axisLeft(payScale));
     }
 
     
@@ -65,7 +90,7 @@
         d3.csv("./edu_occ_and_tot_earn/stipend.csv").then(function (stipendDataset) {
 
             let startYear = 2004
-            let endYear = 2019
+            let endYear = 2044
 
             // initial data processing
             eduOccDataset = eduOccDataset.filter(d => d["Year"] && +d["Year"] >= startYear && +d["Year"] <= endYear)
@@ -124,7 +149,7 @@
                 let education = d["Education"]
                 // filter out jobs without full data
                 let val = nestedEduOccDataset.find(ds => ds.key == [job, education]).value
-                if (val == endYear - startYear + 1) {
+                if (val == 2021 - startYear) {
                     let year = +d["Year"]
 
                     let delay = 0
@@ -151,10 +176,27 @@
                     }
                     // cumulative earning
                     if (year > startYear) {
-                        let prev_d = dataset.find(x => x.job == job && x.education == education && x.year == year - 1)
-                        curr_d["c_pay"] = Math.round( 0.5 * ( pay + prev_d.pay ) + prev_d.c_pay )
+                        let prev_d
+                        // no 2020 data interpolate
+                        if (year == 2021) {
+                            let d_2019 = prev_d = dataset.find(x => x.job == job && x.education == education && x.year == 2019)
+                            prev_d = {
+                                "year": 2020,
+                                "education": education,
+                                "job": job,
+                                "pay": Math.round(0.5 * (pay + d_2019.pay)),
+                            }
+                            prev_d["c_pay"] = Math.round(0.5 * (prev_d.pay + d_2019.pay) + d_2019.c_pay)
+                            //prev_d["d_pay"] = prev_d.pay - d_2019.pay
+                            dataset.push(prev_d)
+                        } else {
+                            prev_d = dataset.find(x => x.job == job && x.education == education && x.year == year - 1)
+                        }
+                        curr_d["c_pay"] = Math.round(0.5 * (pay + prev_d.pay) + prev_d.c_pay)
+                        curr_d["d_pay"] = curr_d.pay - prev_d.pay
                     } else {
                         curr_d["c_pay"] = 0
+                       // curr_d["d_pay"] = 0
                     }
                     dataset.push(curr_d)
 
@@ -163,21 +205,56 @@
 
             })
 
+            // get mean pay change to predict pay
+            /*let meanPayDelta = d3.nest()
+                .key(function (d) { return [d.job, d.education] })
+                .rollup(function (v) {
+                    let d_2021 = v.find(d => d.year =2021)
+                    let d_2004 = v.find(d => d.year = 2004)
+                    return Math.round( (d_2021.pay - d_2004.pay) / ( 2021 - 2004 ) )
+                })
+                .entries(dataset)*/
+            
 
-
-            // calculate cumulative pay
+            // get unique jobs for dropdown
             let nestedDataset = d3.nest()
                 .key(function (d) { return [d.job, d.education] })
                 .entries(dataset)
 
             console.log(nestedDataset)
-            // get unique jobs for dropdown
+            
             let possibleJobs = dataset.map(function (d) {
                 return d.job
             })
 
             possibleJobs = new Set(possibleJobs)
             possibleJobs = Array.from(possibleJobs)
+
+            // extrapolate data using rolling average
+            nestedDataset.forEach(function (ds) {
+                
+                //let mean_d_pay = meanPayDelta.find(d => d.key == ds.key).value
+                for (let i = 2022; i < 2045; i++) {
+                    let year = i
+                    let m17_d = ds.values.find(x => x.year == year - 18)
+                    let m1_d = ds.values.find(x => x.year == year - 1)
+                    let d = {
+                        "year": year,
+                        "education": m1_d.education,
+                        "job": m1_d.job,
+                        "pay": Math.round(m1_d.pay + (m1_d.pay - m17_d.pay) / 17 ),
+                    }
+                    d["c_pay"] = Math.round(0.5 * (d.pay + m1_d.pay) + m1_d.c_pay)
+                    ds.values.push(d)
+                    dataset.push(d)
+                }
+            })
+
+            console.log(dataset)
+
+            nestedDataset = d3.nest()
+                .key(function (d) { return [d.job, d.education] })
+                .entries(dataset)
 
             
             console.log(possibleJobs)
@@ -196,18 +273,19 @@
                 .on("change", function (d) {
                     selectedJob = d3.select(this).property("value")
                     console.log(selectedJob)
-                    updateStipend()
+                    updateStipend(dataset)
                 })
 
 
 
             console.log(nestedDataset)
             // define x and y extent
-            yearDomain = d3.extent(dataset, function (d) {
-                return d.year
-            });
+            yearDomain = [2004,2044];
             payDomain = d3.extent(dataset, function (d) {
-                return d.c_pay
+                if (d.job == selectedJob) {
+                    return d.c_pay
+                }
+                    return 0
             });
             // create scales
             yearScale = d3.scaleLinear()
@@ -249,6 +327,7 @@
                         .y(function (d) { return payScale(d.c_pay) })
                         (ds.values)
                 })
+
             // points on line plot
             svg.selectAll()
                 .data(dataset, function (d) {
@@ -276,9 +355,6 @@
                     }
                 })
                 .on("mouseover", function (d) {
-                    console.log(d.job)
-                    console.log(selectedJob)
-                    console.log(selectedJob==d.job)
                     if (d.job == selectedJob) {
                         toolTip
                             .style('visibility', 'visible')
@@ -294,7 +370,7 @@
                     toolTip.style('visibility', 'hidden');
                 })
                 
-           updateStipend()
+            updateStipend(dataset)
 
             // x axis
             svg.append('g')
@@ -313,7 +389,7 @@
             // bottom x axis label
             svg.append("text")
                 .attr("class", "axisLabel")
-                .attr("transform", "translate(300,10)")
+                .attr("transform", "translate(500,10)")
                 .attr("dy", "0.3em")
                 .text("Year");
 
@@ -323,6 +399,8 @@
                 .attr("transform", "translate(20,370)rotate(270)")
                 .attr("dy", "-0.2em")
                 .text("Total Earnings ($)");
+
+      
         } )
     });
 

@@ -9,7 +9,7 @@
 
     // Define a padding object
     // This will space out the trellis subplots
-    let padding = { t: 20, r: 20, b: 60, l: 60 };
+    let padding = { t: 20, r: 250, b: 60, l: 60 };
 
     let yearDomain
     let salaryDomain
@@ -55,7 +55,7 @@
             })
 
         // update points
-        svg.selectAll("circle")
+        svg.selectAll(".dataDot")
             .sort(function (a, b) {
                 return d3.ascending(a["Category"] == selectedCategory,
                     b["Category"] == selectedCategory)
@@ -138,7 +138,7 @@
                     svg.selectAll("path")
                         .attr("stroke", "grey")
                         .attr("opacity", 0.1)
-                    svg.selectAll("circle")
+                    svg.selectAll(".dataDot")
                         .attr("fill", "grey")
                         .attr("opacity", 0)
                 }
@@ -161,6 +161,7 @@
             .attr("cy", function (d) {
                 return salaryScale(+d["Salary"])
             })
+            .attr("class","dataDot")
             .attr("stroke", "black")
             .attr("r", 4)
             .attr("opacity", 0)
@@ -186,7 +187,7 @@
                     svg.selectAll("path")
                         .attr("stroke", "grey")
                         .attr("opacity", 0.1)
-                    svg.selectAll("circle")
+                    svg.selectAll(".dataDot")
                         .attr("fill", "grey")
                         .attr("opacity", 0)
                 }
@@ -215,7 +216,7 @@
         // bottom x axis label
         svg.append("text")
             .attr("class", "axisLabel")
-            .attr("transform", "translate(300,10)")
+            .attr("transform", "translate(500,10)")
             .attr("dy", "0.3em")
             .text("Year");
 
@@ -226,9 +227,34 @@
             .attr("dy", "-0.2em")
             .text("Mean Salary ($)");
 
+        // legend
+        let educations = ["Bachelor's", "Master's/Professional", "Doctorate" ]
+        svg.selectAll(".legend")
+            .data(educations)
+            .enter()
+            .append("circle")
+            .attr("class","legendDot")
+            .attr("cx", 780)
+            .attr("cy", function (d, i) { return svgHeight / 2 + i * 25 }) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("r", 7)
+            .style("fill", function (d) { return educationScale(d) })
 
+        svg.selectAll(".legend")
+            .data(educations)
+            .enter()  
+            .append("text")
+            .text(d => d)
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+            .attr("x", 800)
+            .attr("y", function (d, i) { return svgHeight / 2 + i * 25 })
 
-
+        svg.append("text")
+            .text("Educational Attainment")
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+            .attr("x", 780)
+            .attr("y", svgHeight / 2 - 25)
     });
 
 }
