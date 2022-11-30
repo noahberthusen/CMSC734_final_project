@@ -25,7 +25,7 @@
 
 		.html(function(d) {
 			console.log(d)
-			return "<h5>"+printCommas(d.income)+"</h5>";
+			return "<h5>$"+printCommas(d.income)+"</h5>";
 			
 		})
 
