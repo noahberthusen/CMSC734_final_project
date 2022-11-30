@@ -41,7 +41,7 @@
 
 		.html(function(d) {
 			console.log(d)
-			return "<h5>"+printCommas(d.industry.income)+"</h5>";
+			return "<h5>Industry: $"+printCommas(d.industry.income)+"</h5><h5>Student: $"+printCommas(d.student.income)+"</h5>";
 			
 		})
 
@@ -50,7 +50,7 @@
 
 		.html(function(d) {
 			console.log(d)
-			return "<h5>"+printCommas(d.student.income)+"</h5>";
+			return "<h5>Industry:"+printCommas(d.industry.income)+"</h5><h5>Student: $"+printCommas(d.student.income)+"</h5>";
 			
 		})
 

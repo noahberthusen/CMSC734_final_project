@@ -107,22 +107,23 @@
 	function updateChart(field) {
 
 		
+		//Graduate Non-Doctorate
+		//Graduate Doctorate
 		
-		
-		data = {Undergraduate : {Total : dataset[field].Undergraduate_Total,
+		data = {"Bachelor's" : {Total : dataset[field].Undergraduate_Total,
 								 Employed : dataset[field].Undergraduate_Employed,
 								 Unemployed : dataset[field].Undergraduate_Unemployed,
 								 "Unemployment Rate": dataset[field].Undergraduate_Unemployment_Rate,
 								 "Percent of Field": dataset[field].Undergraduate_Percent_Field},
 
-				"Graduate Non-Doctorate": {Total: dataset[field]["Graduate_Non-Doctorate_Total"],
+				"Master's/Professional": {Total: dataset[field]["Graduate_Non-Doctorate_Total"],
 										   Employed : dataset[field]["Graduate_Non-Doctorate_Employed"],
 										   Unemployed : dataset[field]["Graduate_Non-Doctorate_Unemployed"],
 										   "Unemployment Rate": dataset[field]["Graduate_Non-Doctorate_Unemployment_Rate"],
 										   "Percent of Field": dataset[field]["Graduate_Non-Doctorate_Percent_Field"]},
 
 
-				"Graduate Doctorate": {Total: dataset[field].Graduate_Doctorate_Total,
+				"Doctorate": {Total: dataset[field].Graduate_Doctorate_Total,
 			 						   Employed : dataset[field].Graduate_Doctorate_Employed,
 			 						   Unemployed : dataset[field].Graduate_Doctorate_Unemployed,
 			 						   "Unemployment Rate": dataset[field].Graduate_Doctorate_Unemployment_Rate,
@@ -136,6 +137,9 @@
 
 		d3.select("#pie")
 			.selectAll("line")
+			.remove()
+		d3.select("#pie")
+			.selectAll("rect")
 			.remove()
 		
 		//console.log(data)
@@ -187,7 +191,7 @@
 
 
 		arcs.append("path")
-			.attr("fill", function(d){ return(color(d.data.key)) })
+			.attr("fill", function(d){ return(educationScale(d.data.key)) })
 			.attr("stroke", "black")
 			.attr("d", arc);
 
@@ -208,7 +212,7 @@
 			.attr("cx", 30)
 			.attr("cy", function(d,i) {return svg_height - 60 - i *30})
 			.attr("r", 5)
-			.style("fill", function(d){ return(color(d.data.key)) })
+			.style("fill", function(d){ return(educationScale(d.data.key)) })
 
 		svg.selectAll("labelText")
 			.data(prep_data)
@@ -273,7 +277,7 @@
 			.attr("y", function(d) { return y(d.value); })//svg_height*2-200)//
 			.attr("width", x.bandwidth())
 			.attr("height", function(d) { return  svg_height*2 -150 - y(d.value); })
-			.attr("fill", function(d){ return(color(d.key))})
+			.attr("fill", function(d){ return(educationScale(d.key))})
 
 			.on("mouseover", toolTip2.show)
 			.on("mouseout", toolTip2.hide)
