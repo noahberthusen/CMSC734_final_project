@@ -356,7 +356,7 @@ function readyToDraw2(counties, lw, stipends, year) {
         .attr("transform", "translate(1050,250)");
 
     var colorBar = d3.legendColor()
-        .title("Stipend decifit/surplus")
+        .title("Stipend deficit/surplus")
         .labelFormat(d3.format("$d"))
         .ascending(true)
         .scale(lw_pay_scale);
