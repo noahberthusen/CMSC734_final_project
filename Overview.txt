@@ -1,0 +1,21 @@
+Topic: 
+Narrative visualization on graduate stipends
+
+Team Members:
+Noah Berthusen, 
+Nate Rollings, 
+Paul Zaidins 
+
+Project Overview:
+We created a webpage consisting of 7 views with expository paragraphs to communicate information regarding graduate student stipends, cost of living, and industry wages. 
+Scrolling through we first show a county map of the United States showing the living wage by county. This helps build a frame of reference for the wages and stipends shown later. 
+We then display the difference between local stipends and living wages. This highlights which schools are more generous or lacking with graduate funding and shows that overtime stipend growth has not kept pace 
+with the cost of living. We then come to a line plot showing United States Census Bureau data for mean salary for different occupations and levels of education. We note that while further education often 
+translates to higher wages the difference is not as large as the difference from occupation. We then look at the hypothetical total earnings for an individual over the course of their career based on 
+education and educational attainment. We show that education is a long-term investment that often results in lower wealth in the short term. Next, we show a clear line plot demonstrating that while 
+industry wages have consistently increased, graduate stipends have largely stagnated. Our sixth view is a lollipop chart which showcases the significant burden student debt puts on graduate students as debt 
+is large relative to net income for most occupations. We end by showing the relative prevalence of educational attainment in different fields for both employment and unemployment. This highlights that 
+job stability generally increases with education level.
+
+Video URL:
+
