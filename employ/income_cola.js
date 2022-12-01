@@ -17,15 +17,18 @@
 
 
 	function printCommas(in_str) {
-		return Number(in_str).toLocaleString("en-US")
+		
+		temp_num = Number(Number(in_str).toFixed(2))
+		return temp_num.toLocaleString("en-US")
 	}
 
 	var toolTip_cola = d3.tip()
 		.attr("class", "d3-tip")
 
 		.html(function(d) {
-			console.log(d)
-			return "<h5>$"+printCommas(d.income)+"</h5>";
+			//console.log(d)
+			var job = d.cat != "Student" ? occ_dict[d.cat] : "Graduate Student"
+			return "<h5>"+job+": $"+printCommas(d.income)+"</h5>";
 			
 		})
 
@@ -86,17 +89,17 @@
 	// 	.text("Letter Frequency (%)")
 
 
-	d3.csv('./employ/edd_occ.csv', dataPreprocessor).then(function(dataset) {
+	d3.csv('./final_data/edd_occ.csv', dataPreprocessor).then(function(dataset) {
 		// Create global variables here and intialize the chart
 		svg.call(toolTip_cola);
 		
-		console.log(dataset)
+		//console.log(dataset)
 		data = category_dict;
 
-		data["student"] = {cat: "student",
+		data["Student"] = {cat: "Student",
 						   income: 26000,
 						   num: 1}
-		console.log(data);
+		//console.log(data);
 		data_keys = Object.keys(data)
 		for (var i = 0; i < data_keys.length; i++) {
 			data[data_keys[i]].income = data[data_keys[i]].income/data[data_keys[i]].num - cola
@@ -105,13 +108,13 @@
 		barBand = barBand / data_keys.length
 		barHeight = barBand * 0.7;
 		
-		console.log(data);
+		//console.log(data);
 		new_data = Object.values(data)
-		console.log(new_data)
+		//console.log(new_data)
 
 
 		var new_xheight = svgHeight - padding.b - 30
-		// Add X axis
+
 		var x = d3.scaleLinear()
 			.domain([-20000, 70000])
 			.range([ padding.l, svgWidth - padding.r]);
@@ -122,9 +125,9 @@
 			.attr("transform", "translate(-10,0)rotate(-45)")
 			.style("text-anchor", "end");
 
-		// Y axis
+
 		var y = d3.scaleBand()
-			.range([padding.t, svgHeight - padding.b-20])//[ 100, chartHeight ])
+			.range([padding.t, svgHeight - padding.b-20])
 			.domain(data_keys)
 			.padding(1);
 
@@ -139,8 +142,8 @@
 			.style("stroke", "red")
 			.style("stroke-dasharray", ("3, 3"))
 
-		// Lines
-		svg.selectAll("myline")
+		
+		svg.selectAll("stick")
 			.data(new_data)
 			.enter()
 			.append("line")
@@ -150,8 +153,8 @@
 			.attr("y2", function(d) { return y(d.cat); })
 			.attr("stroke", "grey")
 
-		// Circles
-		svg.selectAll("mycircle")
+
+		svg.selectAll("lollipop")
 			.data(new_data)
 			.enter()
 			.append("circle")
@@ -170,16 +173,15 @@
 			.padding(1)
 		
 		svg.append("g")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", 10)
+			.attr("font-size", 12)
 			.selectAll("text")
 			.data(new_data)
 			.join("text")
 			.attr("text-anchor", function(d) {return d.income < 0 ? "end" : "start"})
-			.attr("x", function(d) {return x(d.income) + Math.sign(d.income - 0) * 8})
-			.attr("y", (d, i) => y(i) + y.bandwidth() / 2)
-			.attr("dy", "0.35em")
-			.text(d => d.cat);
+			.attr("x", function(d) {return x(d.income) + 10 * Math.sign(d.income)})
+			.attr("y", function(d, i) {return y(i) + y.bandwidth() / 2})
+			.attr("dy", "5")
+			.text(function(d){return d.cat});
 
 		svg.append("text")
 			.attr("class", "title")

@@ -41,7 +41,7 @@
 			//console.log(d)
 			//console.log(this)
 			
-			return "<h5>"+d.value+"</h5>";
+			return "<h5>"+d.value+"%</h5>";
 			
 			//start = d.startAngle
 			//end = d.endAngle
@@ -88,7 +88,7 @@
 
 
 	//d3.csv('unemployment_data_clean2.csv').then(function(dataset) {
-	d3.json('./employ/unemployment_data_clean2.json').then(function(local_dataset) {
+	d3.json('./final_data/unemployment_data_clean2.json').then(function(local_dataset) {
 		//dataset.length = 1
 		dataset = local_dataset
 		console.log(dataset)

@@ -33,14 +33,15 @@
 	}
 
 	function printCommas(in_str) {
-		return Number(in_str).toLocaleString("en-US")
+		temp_num = Number(Number(in_str).toFixed(2))
+		return temp_num.toLocaleString("en-US")
 	}
 
 	var toolTip_industry = d3.tip()
 		.attr("class", "d3-tip")
 
 		.html(function(d) {
-			console.log(d)
+			//console.log(d)
 			return "<h5>Industry: $"+printCommas(d.industry.income)+"</h5><h5>Student: $"+printCommas(d.student.income)+"</h5>";
 			
 		})
@@ -49,8 +50,8 @@
 		.attr("class", "d3-tip")
 
 		.html(function(d) {
-			console.log(d)
-			return "<h5>Industry:"+printCommas(d.industry.income)+"</h5><h5>Student: $"+printCommas(d.student.income)+"</h5>";
+			//console.log(d)
+			return "<h5>Industry: $"+printCommas(d.industry.income)+"</h5><h5>Student: $"+printCommas(d.student.income)+"</h5>";
 			
 		})
 
@@ -126,19 +127,19 @@
 	// 	.text("Letter Frequency (%)")
 
 	//d3.csv('edd_occ.csv', dataPreprocessor_edd).then(function(dataset) {
-	d3.csv('./employ/ssa_average_income.csv', dataPreprocessor_edd).then(function(dataset) {
+	d3.csv('./final_data/ssa_average_income.csv', dataPreprocessor_edd).then(function(dataset) {
 
 
 		// Create global variables here and intialize the chart
-		console.log(dataset)
+		//console.log(dataset)
 		data_nate_income = category_dict_nate_income;
 
-		console.log(data_nate_income);
+		//console.log(data_nate_income);
 		
 
 
-		d3.csv('./employ/phdstipends.csv', dataPreprocessor_phd).then(function(dataset2) {
-			console.log(data_nate_income)
+		d3.csv('./final_data/phdstipends.csv', dataPreprocessor_phd).then(function(dataset2) {
+			//console.log(data_nate_income)
 
 			links = []
 
@@ -164,14 +165,14 @@
 				}
 			}
 			
-			console.log(data_nate_income);
+			//console.log(data_nate_income);
 			
 			barBand = barBand / data_nate_income_keys.length
 			barHeight = barBand * 0.7;
 			
-			console.log(data_nate_income);
+			//console.log(data_nate_income);
 			new_data_nate_income = Object.values(data_nate_income)
-			console.log(new_data_nate_income)
+			//console.log(new_data_nate_income)
 
 
 			var new_xheight = svgHeight - padding.b - 30
@@ -211,7 +212,7 @@
 				.attr("x2", function(d) { return x(d.student.x[1]); })
 				.attr("y1", function(d) { return y(d.student.y[0]); })
 				.attr("y2", function(d) { return y(d.student.y[1]); })
-				.attr("stroke", "grey")
+				.attr("stroke", "black")
 
 			svg.selectAll("industry_links")
 				.data(links)
@@ -221,7 +222,7 @@
 				.attr("x2", function(d) { return x(d.industry.x[1]); })
 				.attr("y1", function(d) { return y(d.industry.y[0]); })
 				.attr("y2", function(d) { return y(d.industry.y[1]); })
-				.attr("stroke", "grey")
+				.attr("stroke", "black")
 
 			// Circles
 			svg.selectAll("student_circles")

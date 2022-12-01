@@ -125,12 +125,12 @@
 	</div>
 	<div class="caption">
 		<p>
-			FIG. 4. Yearly median income for students and industry. Data is taken from the US Census. Hovering over an entry will show the industry and student median earning for that year.
+			FIG. 5. Yearly average income for students and industry. Data is taken from the U.S. Social Security Administration [6] and Ph.D. Stipends [4]. Hovering over an entry will show the industry and student median earning for that year.
 		</p>
 	</div>
 	<div class="paragraph">
 		<p>
-			We have seen the career-long impacts of differences in earnings, but Fig. 4 shows the
+			We have seen the career-long impacts of differences in earnings using current statistics, but we should also look at the historical trends in industry and student pay.  Fig. 5 shows a widening gap between earnings since 2004. The mean industry wage has nearly doubled while student payments increased by less than 50% over the same span. Pursuing advanced degrees, especially longer graduate degrees like a doctorate is being increasingly disincentivized as student payments fall further behind industry salaries. While a student's salary may never rival those of their peers in industry, this widening gap will disincentivize more and more potential graduate students from pursuing higher education.
 		</p>
 	</div>
 
@@ -140,11 +140,15 @@
 	</div>
 	<div class="caption">
 		<p>
-			FIG. 5. Yearly income by field after subtracting the median living wage. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [3] and historical snapshots of the website. Hovering over an entry will show the post-living wage income.
+			FIG. 6. Yearly income by field after subtracting the median living wage. Living wage is an estimate for the cost of living. Data is taken from the Living Wage calculator [3] and historical snapshots of the website. Wage data is from the US Census[5] and Ph.D. Stipends [4].  Hovering over an entry will show the post-living wage income.
 		</p>
 	</div>
 
-
+	<div class="paragraph">
+		<p>
+		  The comparisons in gross pay between students and industry covered previously provide valuable insights, but they do not address the day-to-day financial concerns of the individuals involved.  Fig. 6 shows the median income for a number of areas of industry and that of graduate students after subtracting the national median for cost of living.  This approach is critical in understanding potential financial hardships - those near or below the living wage will struggle simply to meet their daily financial requirements, much less save for future emergencies.  For graduate students, this challenge is exacerbated when holding student loans, particularly those holding unsubsidized loans that will accrue interest if deferred.  The average student stipend barely meets the minimum required to cover living expenses and leaves nothing to pay down student loans.  On the other hand, most STEM professions provide enough income to fully repay the median loan amount within a year and still have disposable income available.
+		</p>
+	</div>
 
 
 	<div id="pie">
@@ -153,7 +157,7 @@
 		</svg>
 
 	</div>
-	<select id="fieldSelector" onchange="onCategoryChangedPie()">
+	<select id="fieldSelector" onchange="onCategoryChangedPie()" style="text-align:center; display:block; margin: 0 auto;">
 
 
 		<option value="General Agriculture">General Agriculture</option>
@@ -335,13 +339,21 @@
 
 	<div class="caption">
 		<p>
-			FIG. 6. Employment information by highest degree earned and subject.  New selections in the box will adjust the two graphs shown above.  The pie chart at the top of the figure shows the percentage of the selected field by their highest degree type.  Hovering over each slice of the chart will show statistics on the precise percentage of the field represented and the unemployment percentage for individuals with that as their highest degree.  The lower chart provides a direct comparison of these unemployment rates and shows the national average unemployment.  Data was taken from the US Census.
+			FIG. 7. Employment information by highest degree earned and subject.  New selections in the box will adjust the two graphs shown above.  The pie chart at the top of the figure shows the percentage of the selected field by their highest degree type.  Hovering over each slice of the chart will show statistics on the precise percentage of the field represented and the unemployment percentage for individuals with that as their highest degree.  The lower chart provides a direct comparison of these unemployment rates and shows the national average unemployment.  Data was taken from the US Census[5].
 		</p>
 	</div>
 
     <div class="paragraph">
         <p>
-            last text
+          Another important angle to consider is that of employment opportunities.  Fig. 7 shows employment data by field and highest degree earned. In some fields, higher education is extremely beneficial; in physics, more people hold a Master's degree than just an Bachelor's degree, and there are nearly as many with a Ph.D. as with just a Bachelor's degree, indicating a substantial need for advanced degrees in this field.  Furthermore, those with just a Bachelor's in physics face an unemployment rate well over the national average while those with a Doctorate are less than half of that. In other fields, the advantages in the job market are less clear.  Computer science shows a drop in unemployment for those holding advanced degrees, but they make up a smaller portion of the field.  Doctorates specifically make less than three percent of of the CS job market, indicating that although these degrees may be beneficial, they are not required for the vast majority of jobs in this field.  Other fields show the complete opposite - those holding a Doctorate in Cosmetology Services and Culinary Arts face an unemployment rate nearly five times the national average while Bachelor's degree holders have an unemployment rate less than one percent above the national average.  From this data, we can see that the value of advanced degrees depends heavily on the field.  In fields like physics, potential students have a compelling reason to pursue advanced education despite low student stipends.  In those more similar to CS, however, the slight benefits of an advanced degree in improved employment opportunities may not outweigh the almost non-existent compensation for the better part of a decade.
+        </p>
+    </div>
+
+
+	
+    <div class="paragraph">
+        <p>
+		  From these seven figures, we gain considerable insight into the financial and employment considerations of pursuing advanced degrees. It is apparent that graduate students are substantially underpaid compared to their industry colleagues, although depending on the field, they may have higher lifetime earning potential.  This long-term potential, however, does little to help when the students are paid at or below the living wage, esp. when they have interest on student debt continuing to accumulate.  We also see that while advanced degrees are beneficial or even nearly mandatory for employment in some fields, they provide limited benefits in others.  In the latter cases, the financial concerns for graduate students offset many of the long-term advantages.  Each individual's case is unique, but programs offering advanced degrees will lose many promising candidates if they continue to offer low stipends while industry steadily increases the already superior wages being offered.
         </p>
     </div>
 
@@ -351,8 +363,9 @@
             [2] Dayak, Shifra. “UMD Graduate Students Say Their Stipends Make It Hard to Stay Afloat Financially.” The Diamondback, 21 Oct. 2021, <a href="https://dbknews.com/2021/09/21/umd-grad-students-stipends-housing-costs/">https://dbknews.com/2021/09/21/umd-grad-students-stipends-housing-costs/</a>. <br>
 			[3] Glasmeier, Amy K. Living Wage Calculator. 2020. Massachusetts Institute of Technology. <a href="https://livingwage.mit.edu">livingwage.mit.edu</a>. <br>
 			[4] PhD stipends. <a href="https://www.phdstipends.com">https://www.phdstipends.com</a>. <br>
-            [5] U.S. Census Bureau. (2021). 2004-2021 American Community Survey 1-year Public Use Microdata Samples
-			<a href="https://data.census.gov/mdat/#/">https://data.census.gov/mdat/#/</a>.
+            [5] U.S. Census Bureau. (2021). 2004-2021 American Community Survey 1-year Public Use Microdata Samples <a href="https://data.census.gov/mdat/#/">https://data.census.gov/mdat/#/</a>.<br>
+			[6] U.S. Social Security Administration. (2021). Measures of Central Tendency for Wage Data. <a href="https://www.ssa.gov/oact/cola/central.html">https://www.ssa.gov/oact/cola/central.html</a>.
+			
 		</p>
 	</div>
 
