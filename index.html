@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <h1>Graduate education in America</h1>
+    <h3 style="text-align: center;">Noah Berthusen, Nate Rollings, Paul Zaindins</h3>
 	<div class="paragraph">
 		<p>
-			Introduction...
+			A common concern among graduate students is whether they will be able to live on their stipend. For some of them, the answer unfortunately is no [1, 2]. As a result, graduate students all across the country are advocating and protesting for livable wages. Choosing a graduate program often depends on if and how much the program is willing to pay. Sometimes, the opportunity cost of recieving spending three to five years living on a student's paycheck doesn't outweigh the career boosts from obtaining a Master's/Doctorate degree. On the other hand, some fields may suggest or even require obtaining a higher degree. While there are many factors to consider when choosing to pursue a graduate degree, in this work we focus on pay and employment after recieving the degree.
 		</p>
 	</div>
 
+    <div class="paragraph">
+        <p>
+            This narrative visualization is meant to provide some insight into the current state of graduate education in America. For prospective graudate students, this article can be used to help decide whether pursuing graduate education is the right choice. For university executives and other positions of power in academia, this article could provide reason to consider raising current stipends. 
+        </p>
+    </div>
 
 	<!-- county map -->
 	<div id="slider1"></div>
@@ -20,13 +27,13 @@
 
 	<div class="caption">
 		<p>
-			FIG. 1. Living wage information by county. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [1] and historical snapshots of the website. Hovering over a county displays the living wage value as well as the poverty wage and the minimum wage for that county. Missing data is indicated by a gray fill.
+			FIG. 1. Living wage information by county. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [3] and historical snapshots of the website. Hovering over a county displays the living wage value as well as the poverty wage and the minimum wage for that county. Missing data is indicated by a gray fill.
 		</p>
 	</div>
 
 	<div class="paragraph">
 		<p>
-			According to the Living Wage calculator [1], the <i>living wage</i> model "is a market-based approach that draws upon geographically specific expenditure data related to a family's likely minimum food, childcare, health insurance, housing, transportation, and other basic necessities (e.g. clothing, personal care items, etc.) costs." This value depends on the number of earners and children, so we assume one adult worker with zero children--as most graduate students fit into this category. The map in Fig. 1 displays wage data for this group by county over nine years. For practically <b>every single county</b>, the minimum wage is well below the living wage and is in fact much closer to the poverty wage. Furthermore, while the living wage has almost doubled in many counties over the nine years of data, the minimum wage has not been increased to match. These are concerning issues but separate from the motivations of this visualization.
+			According to the Living Wage calculator [3], the <i>living wage</i> model "is a market-based approach that draws upon geographically specific expenditure data related to a family's likely minimum food, childcare, health insurance, housing, transportation, and other basic necessities (e.g. clothing, personal care items, etc.) costs." This value depends on the number of earners and children, so we assume one adult worker with zero children--as most graduate students fit into this category. The map in Fig. 1 displays wage data for this group by county over nine years. For practically <b>every single county</b>, the minimum wage is well below the living wage and is in fact much closer to the poverty wage. Furthermore, while the living wage has almost doubled in many counties over the nine years of data, the minimum wage has not been increased to match. These are concerning issues but separate from the motivations of this visualization.
 		</p>
 	</div>
 
@@ -35,7 +42,7 @@
 	<div id="map2"></div>
 	<div class="tooltip2"></div>
 	<div class="caption">
-		<p>FIG. 2. Average stipend amount for graduate students. Data is taken from Ph.D. Stipends [2], a site where graduate students can self report stipend information. Hovering over a datapoint displays the average stipend amount and the living wage surplus/deficit.</p>
+		<p>FIG. 2. Average stipend amount for graduate students. Data is taken from Ph.D. Stipends [4], a site where graduate students can self report stipend information. Hovering over a datapoint displays the average stipend amount and the living wage surplus/deficit.</p>
 	</div>
 
 
@@ -51,13 +58,7 @@
 		</p>
 	</div>
 
-	<div class="caption">
-		<p>
-			[1] Glasmeier, Amy K. Living Wage Calculator. 2020. Massachusetts Institute of Technology. <a href="https://livingwage.mit.edu">livingwage.mit.edu</a>. <br>
-			[2] PhD stipends. <a href="https://www.phdstipends.com">https://www.phdstipends.com</a>.
-
-		</p>
-	</div>
+	
 
 	<div class="tooltip3"></div>
 	<div id="eduOcc">
@@ -70,7 +71,7 @@
 			Occupation class is an aggregation of similar occupations as dictated by the United States Standard Occupation Codes
 			(SOC). Scrolling over the faded lines above will highlight the mean salary for all education levels for the same occupation class. Hover over circles for exact salary counts and occupation class.
 			Clicking on highlighted lines can lock or unlock the highlight, allowing for closer examination of the data.
-			Data derived from the United States Census Bureau's American Community Survey Microdata Sample tool [3]
+			Data derived from the United States Census Bureau's American Community Survey Microdata Sample tool [5]
 		</p>
 	</div>
 
@@ -86,12 +87,6 @@
 		</p>
 	</div>
 
-	<div class="caption">
-		<p>
-			[3] U.S. Census Bureau. (2021). 2004-2021 American Community Survey 1-year Public Use Microdata Samples
-			<a href="https://data.census.gov/mdat/#/">https://data.census.gov/mdat/#/</a>.
-		</p>
-	</div>
 	<div class="tooltip4"></div>
 
 	<div id="stipend">
@@ -104,7 +99,7 @@
 			2044. We make the following assumptions: an individual will recive the annual mean stipend value while they are in graduate school,
 			a Master's or Professional degree is aquired in 2 years and a Doctorate in 6 years, once out of graduate school an indvidual will
 			will be paid the annual mean salary for their educaitonal attinment and occupation, for years 2022-2044 the change in
-			pay is equal to the mean change in pay for the previous 17 years. [2][3]
+			pay is equal to the mean change in pay for the previous 17 years [4][5].
 			<select id="jobSelectButton"></select>
 		</p>
 	</div>
@@ -145,7 +140,7 @@
 	</div>
 	<div class="caption">
 		<p>
-			FIG. 5. Yearly income by field after subtracting the median living wage. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [1] and historical snapshots of the website. Hovering over an entry will show the post-living wage income.
+			FIG. 5. Yearly income by field after subtracting the median living wage. Living wage is an estimate for the cost of living in that location. Data is taken from the Living Wage calculator [3] and historical snapshots of the website. Hovering over an entry will show the post-living wage income.
 		</p>
 	</div>
 
@@ -344,7 +339,22 @@
 		</p>
 	</div>
 
+    <div class="paragraph">
+        <p>
+            last text
+        </p>
+    </div>
 
+    <div class="caption">
+		<p>
+            [1] Woolston, Chris. “Phd Students Face Cash Crisis with Wages That Don't Cover Living Costs.” Nature News, Nature Publishing Group, 23 May 2022, <a href="https://www.nature.com/articles/d41586-022-01392-w">https://www.nature.com/articles/d41586-022-01392-w</a>. <br>
+            [2] Dayak, Shifra. “UMD Graduate Students Say Their Stipends Make It Hard to Stay Afloat Financially.” The Diamondback, 21 Oct. 2021, <a href="https://dbknews.com/2021/09/21/umd-grad-students-stipends-housing-costs/">https://dbknews.com/2021/09/21/umd-grad-students-stipends-housing-costs/</a>. <br>
+			[3] Glasmeier, Amy K. Living Wage Calculator. 2020. Massachusetts Institute of Technology. <a href="https://livingwage.mit.edu">livingwage.mit.edu</a>. <br>
+			[4] PhD stipends. <a href="https://www.phdstipends.com">https://www.phdstipends.com</a>. <br>
+            [5] U.S. Census Bureau. (2021). 2004-2021 American Community Survey 1-year Public Use Microdata Samples
+			<a href="https://data.census.gov/mdat/#/">https://data.census.gov/mdat/#/</a>.
+		</p>
+	</div>
 
 </body>
 <script src="https://d3js.org/d3.v5.min.js"></script>
